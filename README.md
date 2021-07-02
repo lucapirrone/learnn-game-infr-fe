@@ -28,22 +28,24 @@ conterranno i due stage differenti di FrontEnd:
 # Continuous Delivery
 Per il CD è impostata un'automazione su seed.run che effettua il deploy del progetto
 su AWS in base al ramo git su cui viene effettuato il push:
-- Se viene effettuato un push sul ramo git 'dev', seed.run automaticamente avvia 
-il processo di deploy su AWS tramite il comando 
+- Se viene effettuato un push sul ramo git 'main', seed.run automaticamente avvia 
+il processo di deploy su AWS nell'ambiente di sviluppo tramite il comando 
 ```bash
 sls deploy --stage dev
 ```
 - Se viene effettuato un push sul ramo git 'master', seed.run automaticamente avvia 
-il processo di deploy su AWS tramite il comando 
+il processo di deploy su AWS nell'ambiente di produzione tramite il comando 
 ```bash
 sls deploy --stage prod
 ```
+In questo modo si hanno due ambienti sepatari dell'infrastruttura che conterranno rispettivamente i due ambienti
+della webapp (ambiente di sviluppo e ambiente di produzione).
 
 # Continuous Delivery progetto FrontEnd (learnn-game project) (GitHub Action)
-Nella repository del progetto FrontEnd è impostata una pipeline che in base al
+Nella repository del progetto FrontEnd è impostata una action che in base al
 ramo su cui si sta pushando una versione, effettua il deploy del progetto sul relativo
 stage dell'ambiente AWS:
-- In caso di push sul ramo git 'dev' viene effettuato il deploy del progetto 
+- In caso di push sul ramo git 'main' viene effettuato il deploy del progetto 
 sull'ambiente AWS di sviluppo (stage 'dev')
-- In caso di push sul ramo git 'master' viene effettuato il deploy del progetto
+- In caso di push sul ramo git 'prod' viene effettuato il deploy del progetto
 sull'ambiente AWS di produzione (stage 'prod')
