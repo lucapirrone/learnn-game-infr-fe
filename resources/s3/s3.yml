@@ -1,0 +1,27 @@
+Resources:
+  WebSiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ${self:service.name}-${self:provider.stage}-bucket
+      AccessControl: PublicRead #Il bucket deve essere pubblico e visibile ai visitatori
+      WebsiteConfiguration: #Configurazione bucket per sito web statico
+        IndexDocument: index.html #Oggetto di default da far visualizzare
+        ErrorDocument: index.html #Oggetto di default da far visualizzare in caso di errore (lasciamo la gestione dell'errore a react)
+  #Policy del bucket per lasciare ai visitatori solo l'autorizzazione per visualizzare il bucket
+  WebSiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebSiteBucket #Riferimento al bucket creato
+      PolicyDocument:
+        Id: WebSiteBucket
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*' #Permetti tutte le richieste
+            Action: 's3:GetObject' #Permetti solo l'azione GetObject
+            Resource: !Join ['', ['arn:aws:s3:::', !Ref WebSiteBucket, /*]] #Solo la risorsa del bucket
+Outputs:
+  WebsiteURL:
+    Value: !GetAtt WebSiteBucket.WebsiteURL
+    Description: URL pubblico website

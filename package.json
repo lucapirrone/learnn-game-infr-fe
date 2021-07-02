@@ -1,0 +1,17 @@
+{
+  "name": "learnn-game-infr-fe",
+  "version": "1.1.0",
+  "description": "Serverless Infrastructure As Code for Learnn Game webapp",
+  "scripts": {
+    "test": "mocha -r ts-node/register tests/**/*.test.ts --exit",
+    "deploy": "tsc && sls deploy"
+  },
+  "author": "Luca Pirrone - lpirrone2000@gmail.com - 3481633500",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-bundle": "^1.4.0",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-offline": "^5.3.3"
+  },
+  "dependencies": {}
+}

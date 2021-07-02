@@ -1,0 +1,15 @@
+service:
+  name: learnn-game-infr-fe
+plugins:
+  - serverless-dotenv-plugin # Carica .env come variabili d'ambiente
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: eu-central-1
+  accountId: 911762883187
+resources:
+  # S3 Cloudformation Template
+  - ${file(resources/s3/s3.yml)}
+  # Cloudfront Cloudformation Template
+  - ${file(resources/cloudfront/cloudfront.yml)}
