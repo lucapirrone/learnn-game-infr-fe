@@ -3,10 +3,14 @@ Questo progetto sviluppato con "Serverless Framework" descrive l'infrastruttura
 dell'ambiente AWS su cui viene rilasciato il FrontEnd della web app.
 
 # Stack infrastruttura
-L'infrastruttura è composta dal servizio AWS S3, un servizio di storage che offre 
-scalabilità, disponibilità continua dei dati, sicurezza e prestazioni all'avanguardia
-Il bucket S3 contenente il FrontEnd è impostato in modo tale da hostare 
-un sito web statico pubblico (in sola lettura).
+L'infrastruttura è composta dai servizi AWS S3 + AWS CloudFront. 
+
+S3 e' un servizio di storage che offre scalabilità, disponibilità continua dei dati,
+sicurezza e prestazioni all'avanguardia. Il bucket S3 contenente il FrontEnd è impostato 
+in modo tale da hostare un sito web statico pubblico (in sola lettura). 
+
+Il servizio CloudFront e' invece una CDN (Content Delivery Network) che incrementa la sicurezza
+(aggiungendo il supporto all'HTTPS), disponibilita' e performance per gli utenti finali.
 
 # Installazione Serverless Framework
 Installa la CLI di serverless framwork tramite npm:

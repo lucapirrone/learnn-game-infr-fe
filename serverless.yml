@@ -7,7 +7,6 @@ provider:
   runtime: nodejs10.x
   stage: ${opt:stage, 'dev'}
   region: eu-central-1
-  accountId: 911762883187
 resources:
   # S3 Cloudformation Template
   - ${file(resources/s3/s3.yml)}
